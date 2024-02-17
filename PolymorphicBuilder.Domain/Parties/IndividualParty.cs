@@ -1,3 +1,5 @@
+using PolymorphicBuilder.Domain.Parties.Options;
+
 namespace PolymorphicBuilder.Domain.Parties;
 
 public class IndividualParty : Party , IIndividualPartyOptions

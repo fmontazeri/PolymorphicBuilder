@@ -1,4 +1,6 @@
-namespace PolymorphicBuilder.Domain.Parties;
+using PolymorphicBuilder.Domain.Parties.Options;
+
+namespace PolymorphicBuilder.Domain.Parties.Managers;
 
 public interface IPartyManager<TSelf, TParty>  : IPartyOptions
     where TParty : IPartyOptions

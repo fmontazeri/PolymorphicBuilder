@@ -1,6 +1,8 @@
 using PolymorphicBuilder.Domain.Parties;
+using PolymorphicBuilder.Domain.Parties.Managers;
+using PolymorphicBuilder.Domain.Parties.Options;
 
-namespace PolymorphicBuilder.Domain.Tests.Unit.Parties;
+namespace PolymorphicBuilder.Domain.Tests.Unit.Parties.TestManagers;
 
 public abstract class TestIndividualPartyManager<TManager, TParty> : TestPartyManager<TManager, TParty>
     where TManager : IIndividualPartyManager<TManager, TParty> 

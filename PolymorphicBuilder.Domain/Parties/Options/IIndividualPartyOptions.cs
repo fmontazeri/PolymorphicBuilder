@@ -1,4 +1,4 @@
-namespace PolymorphicBuilder.Domain.Parties;
+namespace PolymorphicBuilder.Domain.Parties.Options;
 
 public interface IIndividualPartyOptions : IPartyOptions
 {
