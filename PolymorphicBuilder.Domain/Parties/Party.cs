@@ -17,4 +17,9 @@ public class Party : IPartyOptions
         if (string.IsNullOrWhiteSpace(name))
             throw new ArgumentNullException(nameof(Name));
     }
+
+    public void Update(IPartyOptions options)
+    {
+        this.Name = options.Name;
+    }
 }

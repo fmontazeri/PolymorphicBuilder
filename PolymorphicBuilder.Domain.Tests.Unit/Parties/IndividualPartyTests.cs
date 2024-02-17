@@ -11,13 +11,13 @@ public class IndividualPartyTests : PartyTests<TestIndividualPartyManager, Indiv
     public void Constructor_Should_Create_IndividualParty_Successfully()
     {
         //Arrange
-        this.Constructor_Should_Create_Party_Successfully();
+        Constructor_Should_Create_Party_Successfully();
 
         //Act
-        var sut = TestManager.Build();
+        SUT = TestManager.Build();
 
         //Assert
-        sut.Should().BeEquivalentTo(TestManager.SutBuilder);
+        SUT.Should().BeEquivalentTo(TestManager.ActualBuilder);
     }
 
     [Theory]
@@ -30,10 +30,10 @@ public class IndividualPartyTests : PartyTests<TestIndividualPartyManager, Indiv
         base.Constructor_Should_Throw_Exception_When_Name_Is_Empty_Or_Null(name);
 
         //Act
-        var sut = TestManager.WithName(name);
+        Action action = () => TestManager.WithName(name).Build();
 
         //Assert
-        sut.SutBuilder.Should().BeEquivalentTo(TestManager.SutBuilder);
+        action.Should().Throw<ArgumentNullException>(nameof(TestManager.Name));
     }
 
     [Theory]
@@ -43,13 +43,30 @@ public class IndividualPartyTests : PartyTests<TestIndividualPartyManager, Indiv
     public void Constructor_Should_Throw_Exception_When_NationalCode_Is_Null_Or_Empty(string nationalCode)
     {
         //Arrange
-        TestManager.SutBuilder.WithNationalCode(nationalCode);
+        TestManager.ActualBuilder.WithNationalCode(nationalCode);
 
         //Act
-        Action action = () => { TestManager.SutBuilder.Build(); };
+        Action action = () => { TestManager.ActualBuilder.Build(); };
 
         //Assert
-        action.Should().Throw<ArgumentNullException>(nameof(TestManager.SutBuilder.NationalCode));
+        action.Should().Throw<ArgumentNullException>(nameof(TestManager.ActualBuilder.NationalCode));
+    }
+
+
+    [Theory]
+    [InlineData("sample 3")]
+    [InlineData("sample 4")]
+    public override void Update_Should_Be_Done_When_Name_Will_Be_Changed(string name)
+    {
+        //Arrange
+        base.Update_Should_Be_Done_When_Name_Will_Be_Changed(name);
+        SUT = TestManager.WithName(name).Build();
+
+        //Act
+        TestManager.Update(SUT);
+
+        //Assert
+        SUT.Should().BeEquivalentTo(TestManager.ActualBuilder);
     }
 
     protected override TestPartyManager<TestIndividualPartyManager, IndividualPartyManager, IndividualParty> CreateInstance()

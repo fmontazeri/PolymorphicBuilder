@@ -14,10 +14,10 @@ public class TestIndividualPartyManager : TestIndividualPartyManager<TestIndivid
 {
     public TestIndividualPartyManager()
     {
-        SutBuilder.WithNationalCode("123456789");
+        ActualBuilder.WithNationalCode("123456789");
     }
 
-    public string NationalCode => SutBuilder.NationalCode;
+    public string NationalCode => ActualBuilder.NationalCode;
 
     protected override IndividualPartyManager CreateManger()
     {
@@ -26,7 +26,7 @@ public class TestIndividualPartyManager : TestIndividualPartyManager<TestIndivid
 
     public TestIndividualPartyManager WithNationalCode(string nationalCode)
     {
-        SutBuilder.WithNationalCode(nationalCode);
+        ActualBuilder.WithNationalCode(nationalCode);
         return this;
     }
 }

@@ -11,6 +11,8 @@ public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : 
 {
     protected abstract TestPartyManager<TTestManager, TManager, TParty> CreateInstance();
     protected TestPartyManager<TTestManager, TManager, TParty> TestManager;
+    protected TParty SUT;
+    
 
     public PartyTests()
     {
@@ -21,10 +23,10 @@ public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : 
     public void Constructor_Should_Create_Party_Successfully()
     {
         //Act
-        var sut = TestManager.Build();
+        SUT = TestManager.Build();
 
         //Assert
-        sut.Should().BeEquivalentTo(TestManager.SutBuilder);
+        SUT.Should().BeEquivalentTo(TestManager.ActualBuilder);
     }
 
     [Theory]
@@ -35,13 +37,27 @@ public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : 
     {
         //Arrange
         TestManager.WithName(name);
-        
+
         //Act
-        Action action =()=> TestManager.Build();
-        
+        Action action = () => TestManager.Build();
+
         //Assert
         action.Should().Throw<ArgumentNullException>(nameof(TestManager.Name));
+    }
 
+    [Theory]
+    [InlineData("sample 1")]
+    [InlineData("sample 2")]
+    public virtual void Update_Should_Be_Done_When_Name_Will_Be_Changed(string name)
+    {
+        //Arrange
+        SUT = TestManager.WithName(name).Build();
+
+        //Act
+        TestManager.Update(SUT);
+
+        //Assert
+        SUT.Should().BeEquivalentTo(TestManager.ActualBuilder);
     }
 }
 
