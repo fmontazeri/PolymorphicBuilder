@@ -11,10 +11,10 @@ public class IndividualPartyTests : PartyTests<IndividualPartyManager, Individua
     public void Constructor_Should_Create_IndividualParty_Successfully()
     {
         //Act
-        var sut = Manager.Build();
+        var sut = TestManager.Build();
 
         //Assert
-        sut.Should().BeEquivalentTo(Manager.SutBuilder);
+        sut.Should().BeEquivalentTo(TestManager.SUT);
     }
 
 

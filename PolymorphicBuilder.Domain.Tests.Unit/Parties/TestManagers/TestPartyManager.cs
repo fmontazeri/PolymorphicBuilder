@@ -8,25 +8,25 @@ public abstract class TestPartyManager<TManager, TParty>
     where TManager : IPartyManager<TManager, TParty>
 {
     public string Name => Name;
-    public abstract TManager CreateManger();
-    public TManager SutBuilder;
+    protected abstract TManager CreateManger();
+    public TManager SUT;
 
-    public TestPartyManager()
+    protected TestPartyManager()
     {
-        SutBuilder = CreateManger();
-        SutBuilder.WithName("sample party");
+        SUT = CreateManger();
+        SUT.WithName("sample party");
     }
 
 
     public TParty Build()
     {
-        return SutBuilder.Build();
+        return SUT.Build();
     }
 }
 
 public class TestPartyManager : TestPartyManager<DummyTargetManager, PartyTest>
 {
-    public override DummyTargetManager CreateManger()
+    protected override DummyTargetManager CreateManger()
     {
         return new DummyTargetManager();
     }

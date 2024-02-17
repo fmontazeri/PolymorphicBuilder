@@ -12,12 +12,12 @@ public class TestIndividualPartyManager : TestIndividualPartyManager<IndividualP
 {
     public TestIndividualPartyManager()
     {
-        SutBuilder.WithNationalCode("123456789");
+        SUT.WithNationalCode("123456789");
     }
 
-    public string NationalCode => SutBuilder.NationalCode;
+    public string NationalCode => SUT.NationalCode;
 
-    public override IndividualPartyManager CreateManger()
+    protected override IndividualPartyManager CreateManger()
     {
         return new IndividualPartyManager();
     }
