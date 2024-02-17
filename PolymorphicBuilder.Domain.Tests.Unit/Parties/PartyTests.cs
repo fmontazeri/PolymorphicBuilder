@@ -5,11 +5,12 @@ using PolymorphicBuilder.Domain.Tests.Unit.Parties.TestManagers;
 
 namespace PolymorphicBuilder.Domain.Tests.Unit.Parties;
 
-public abstract class PartyTests<TManager, TParty> where TParty : IPartyOptions
+public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : IPartyOptions
     where TManager : IPartyManager<TManager, TParty>
+    where TTestManager : TestPartyManager<TTestManager, TManager, TParty>
 {
-    protected abstract TestPartyManager<TManager, TParty> CreateInstance();
-    protected TestPartyManager<TManager, TParty> TestManager;
+    protected abstract TestPartyManager<TTestManager, TManager, TParty> CreateInstance();
+    protected TestPartyManager<TTestManager, TManager, TParty> TestManager;
 
     public PartyTests()
     {
@@ -23,13 +24,30 @@ public abstract class PartyTests<TManager, TParty> where TParty : IPartyOptions
         var sut = TestManager.Build();
 
         //Assert
-        sut.Should().BeEquivalentTo(TestManager);
+        sut.Should().BeEquivalentTo(TestManager.SutBuilder);
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData(" ")]
+    public virtual void Constructor_Should_Throw_Exception_When_Name_Is_Empty_Or_Null(string name)
+    {
+        //Arrange
+        TestManager.WithName(name);
+        
+        //Act
+        Action action =()=> TestManager.Build();
+        
+        //Assert
+        action.Should().Throw<ArgumentNullException>(nameof(TestManager.Name));
+
     }
 }
 
-public class PartyTests : PartyTests<DummyTargetManager, PartyTest>
+public class PartyTests : PartyTests<TestPartyManager, DummyTargetManager, PartyTest>
 {
-    protected override TestPartyManager<DummyTargetManager, PartyTest> CreateInstance()
+    protected override TestPartyManager<TestPartyManager, DummyTargetManager, PartyTest> CreateInstance()
     {
         return new TestPartyManager();
     }
