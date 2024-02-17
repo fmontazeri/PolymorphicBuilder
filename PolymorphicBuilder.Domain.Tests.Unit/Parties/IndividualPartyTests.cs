@@ -56,10 +56,10 @@ public class IndividualPartyTests : PartyTests<TestIndividualPartyManager, Indiv
     [Theory]
     [InlineData("sample 3")]
     [InlineData("sample 4")]
-    public override void Update_Should_Be_Done_When_Name_Will_Be_Changed(string name)
+    public override void Update_Should_Be_Done_When_Name_Changed(string name)
     {
         //Arrange
-        base.Update_Should_Be_Done_When_Name_Will_Be_Changed(name);
+        base.Update_Should_Be_Done_When_Name_Changed(name);
         SUT = TestManager.WithName(name).Build();
 
         //Act

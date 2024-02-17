@@ -48,7 +48,7 @@ public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : 
     [Theory]
     [InlineData("sample 1")]
     [InlineData("sample 2")]
-    public virtual void Update_Should_Be_Done_When_Name_Will_Be_Changed(string name)
+    public virtual void Update_Should_Be_Done_When_Name_Changed(string name)
     {
         //Arrange
         SUT = TestManager.WithName(name).Build();
