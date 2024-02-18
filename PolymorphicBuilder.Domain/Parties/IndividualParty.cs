@@ -19,4 +19,6 @@ public class IndividualParty : Party, IIndividualPartyOptions
         if (string.IsNullOrWhiteSpace(nationalCode))
             throw new ArgumentNullException(nameof(NationalCode));
     }
+    
+    
 }

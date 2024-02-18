@@ -23,16 +23,16 @@ public abstract class TestPartyManager<TSelf, TManager, TParty>
         return ActualManager.Build();
     }
 
-    public TSelf WithName(string name)
-    {
-        ActualManager.WithName(name);
-        return this;
-    }
+    // public TSelf WithName(string name)
+    // {
+    //     ActualManager.WithName(name);
+    //     return this;
+    // }
 
-    public void Update(TParty options)
-    {
-        ActualManager.Update(options);
-    }
+    // public void Update(TParty options)
+    // {
+    //     ActualManager.Update(options);
+    // }
 
     public static implicit operator TSelf(TestPartyManager<TSelf, TManager, TParty> self) => (self as TSelf)!;
 }

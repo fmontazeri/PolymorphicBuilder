@@ -36,7 +36,7 @@ public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : 
     public virtual void Constructor_Should_Throw_Exception_When_Name_Is_Empty_Or_WhiteSpace(string name)
     {
         //Arrange
-        TestManager.WithName(name);
+        TestManager.ActualManager.WithName(name);
 
         //Act
         Action action = () => TestManager.Build();
@@ -51,10 +51,11 @@ public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : 
     public virtual void Update_Should_Be_Done_When_Name_Changed(string name)
     {
         //Arrange
-        SUT = TestManager.WithName(name).Build();
+        Constructor_Should_Create_Party_Successfully();
+        TestManager.ActualManager.WithName(name);
 
         //Act
-        TestManager.Update(SUT);
+        TestManager.ActualManager.Update(SUT);
 
         //Assert
         SUT.Name.Should().Be(name);

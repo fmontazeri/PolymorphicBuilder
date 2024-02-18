@@ -59,7 +59,7 @@ public abstract class PartyManager<TSelf, TParty> : IPartyManager<TSelf, TParty>
     {
         try
         {
-            methodInfo.Invoke(sut, new object[] { sut });
+            methodInfo.Invoke(sut, new object[] { this });
         }
         catch (Exception e)
         {

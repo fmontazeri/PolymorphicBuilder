@@ -30,7 +30,7 @@ public class IndividualPartyTests : PartyTests<TestIndividualPartyManager, Indiv
         base.Constructor_Should_Throw_Exception_When_Name_Is_Empty_Or_WhiteSpace(name);
 
         //Act
-        Action action = () => TestManager.WithName(name).Build();
+        Action action = () => TestManager.ActualManager.WithName(name).Build();
 
         //Assert
         action.Should().Throw<ArgumentNullException>(nameof(TestManager.Name));
@@ -59,18 +59,19 @@ public class IndividualPartyTests : PartyTests<TestIndividualPartyManager, Indiv
     public override void Update_Should_Be_Done_When_Name_Changed(string name)
     {
         //Arrange
-        base.Update_Should_Be_Done_When_Name_Changed(name);
-        SUT = TestManager.WithName(name).Build();
+        Constructor_Should_Create_Party_Successfully();
+        TestManager.ActualManager.WithName(name);
 
         //Act
-        TestManager.Update(SUT);
+        TestManager.ActualManager.Update(SUT);
 
         //Assert
         SUT.Name.Should().Be(name);
         SUT.Should().BeEquivalentTo(TestManager.ActualManager);
     }
 
-    protected override TestPartyManager<TestIndividualPartyManager, IndividualPartyManager, IndividualParty> CreateInstance()
+    protected override TestPartyManager<TestIndividualPartyManager, IndividualPartyManager, IndividualParty>
+        CreateInstance()
     {
         return new TestIndividualPartyManager();
     }

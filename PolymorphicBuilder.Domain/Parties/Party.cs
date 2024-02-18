@@ -18,7 +18,7 @@ public class Party : IPartyOptions
             throw new ArgumentNullException(nameof(Name));
     }
 
-    public void Update(IPartyOptions options)
+    internal void Update(IPartyOptions options)
     {
         this.Name = options.Name;
     }
