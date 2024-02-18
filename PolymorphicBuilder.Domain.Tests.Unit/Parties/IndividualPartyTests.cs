@@ -17,7 +17,7 @@ public class IndividualPartyTests : PartyTests<TestIndividualPartyManager, Indiv
         SUT = TestManager.Build();
 
         //Assert
-        SUT.Should().BeEquivalentTo(TestManager.ActualBuilder);
+        SUT.Should().BeEquivalentTo(TestManager.ActualManager);
     }
 
     [Theory]
@@ -43,13 +43,13 @@ public class IndividualPartyTests : PartyTests<TestIndividualPartyManager, Indiv
     public void Constructor_Should_Throw_Exception_When_NationalCode_Is_Null_Or_Empty(string nationalCode)
     {
         //Arrange
-        TestManager.ActualBuilder.WithNationalCode(nationalCode);
+        TestManager.ActualManager.WithNationalCode(nationalCode);
 
         //Act
-        Action action = () => { TestManager.ActualBuilder.Build(); };
+        Action action = () => { TestManager.ActualManager.Build(); };
 
         //Assert
-        action.Should().Throw<ArgumentNullException>(nameof(TestManager.ActualBuilder.NationalCode));
+        action.Should().Throw<ArgumentNullException>(nameof(TestManager.ActualManager.NationalCode));
     }
 
 
@@ -66,7 +66,7 @@ public class IndividualPartyTests : PartyTests<TestIndividualPartyManager, Indiv
         TestManager.Update(SUT);
 
         //Assert
-        SUT.Should().BeEquivalentTo(TestManager.ActualBuilder);
+        SUT.Should().BeEquivalentTo(TestManager.ActualManager);
     }
 
     protected override TestPartyManager<TestIndividualPartyManager, IndividualPartyManager, IndividualParty> CreateInstance()

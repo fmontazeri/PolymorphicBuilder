@@ -26,7 +26,7 @@ public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : 
         SUT = TestManager.Build();
 
         //Assert
-        SUT.Should().BeEquivalentTo(TestManager.ActualBuilder);
+        SUT.Should().BeEquivalentTo(TestManager.ActualManager);
     }
 
     [Theory]
@@ -57,7 +57,7 @@ public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : 
         TestManager.Update(SUT);
 
         //Assert
-        SUT.Should().BeEquivalentTo(TestManager.ActualBuilder);
+        SUT.Should().BeEquivalentTo(TestManager.ActualManager);
     }
 }
 

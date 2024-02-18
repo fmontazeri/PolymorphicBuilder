@@ -10,28 +10,28 @@ public abstract class TestPartyManager<TSelf, TManager, TParty>
 {
     public string Name => Name;
     protected abstract TManager CreateManger();
-    public TManager ActualBuilder;
+    public TManager ActualManager;
 
     protected TestPartyManager()
     {
-        ActualBuilder = CreateManger();
-        ActualBuilder.WithName("sample party");
+        ActualManager = CreateManger();
+        ActualManager.WithName("sample party");
     }
 
     public TParty Build()
     {
-        return ActualBuilder.Build();
+        return ActualManager.Build();
     }
 
     public TSelf WithName(string name)
     {
-        ActualBuilder.WithName(name);
+        ActualManager.WithName(name);
         return this;
     }
 
     public void Update(TParty options)
     {
-        ActualBuilder.Update(options);
+        ActualManager.Update(options);
     }
 
     public static implicit operator TSelf(TestPartyManager<TSelf, TManager, TParty> self) => (self as TSelf)!;
