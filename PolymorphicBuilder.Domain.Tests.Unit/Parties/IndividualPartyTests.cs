@@ -24,10 +24,10 @@ public class IndividualPartyTests : PartyTests<TestIndividualPartyManager, Indiv
     [InlineData(null)]
     [InlineData("")]
     [InlineData(" ")]
-    public override void Constructor_Should_Throw_Exception_When_Name_Is_Empty_Or_Null(string name)
+    public override void Constructor_Should_Throw_Exception_When_Name_Is_Empty_Or_WhiteSpace(string name)
     {
         //Arrange
-        base.Constructor_Should_Throw_Exception_When_Name_Is_Empty_Or_Null(name);
+        base.Constructor_Should_Throw_Exception_When_Name_Is_Empty_Or_WhiteSpace(name);
 
         //Act
         Action action = () => TestManager.WithName(name).Build();
@@ -40,7 +40,7 @@ public class IndividualPartyTests : PartyTests<TestIndividualPartyManager, Indiv
     [InlineData(null)]
     [InlineData("")]
     [InlineData(" ")]
-    public void Constructor_Should_Throw_Exception_When_NationalCode_Is_Null_Or_Empty(string nationalCode)
+    public void Constructor_Should_Throw_Exception_When_NationalCode_Is_Null_Or_WhiteSpace(string nationalCode)
     {
         //Arrange
         TestManager.ActualManager.WithNationalCode(nationalCode);
@@ -66,6 +66,7 @@ public class IndividualPartyTests : PartyTests<TestIndividualPartyManager, Indiv
         TestManager.Update(SUT);
 
         //Assert
+        SUT.Name.Should().Be(name);
         SUT.Should().BeEquivalentTo(TestManager.ActualManager);
     }
 

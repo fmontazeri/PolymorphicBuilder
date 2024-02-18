@@ -33,7 +33,7 @@ public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : 
     [InlineData(null)]
     [InlineData("")]
     [InlineData(" ")]
-    public virtual void Constructor_Should_Throw_Exception_When_Name_Is_Empty_Or_Null(string name)
+    public virtual void Constructor_Should_Throw_Exception_When_Name_Is_Empty_Or_WhiteSpace(string name)
     {
         //Arrange
         TestManager.WithName(name);
@@ -57,7 +57,9 @@ public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : 
         TestManager.Update(SUT);
 
         //Assert
+        SUT.Name.Should().Be(name);
         SUT.Should().BeEquivalentTo(TestManager.ActualManager);
+        
     }
 }
 
