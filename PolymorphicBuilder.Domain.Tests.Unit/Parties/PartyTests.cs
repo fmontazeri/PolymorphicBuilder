@@ -61,9 +61,9 @@ public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : 
     }
 }
 
-public class PartyTests : PartyTests<TestPartyManager, DummyTargetManager, PartyTest>
+public class PartyTests : PartyTests<TestPartyManager, DummyPartyManager, PartyTest>
 {
-    protected override TestPartyManager<TestPartyManager, DummyTargetManager, PartyTest> CreateInstance()
+    protected override TestPartyManager<TestPartyManager, DummyPartyManager, PartyTest> CreateInstance()
     {
         return new TestPartyManager();
     }
