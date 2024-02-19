@@ -2,7 +2,7 @@ using PolymorphicBuilder.Domain.Parties.Options;
 
 namespace PolymorphicBuilder.Domain.Parties.Managers;
 
-public interface IIndividualPartyManager<TSelf, TParty> : IIndividualPartyOptions,
+public interface IIndividualPartyManager<out TSelf, TParty> : IIndividualPartyOptions,
     IPartyManager<TSelf, TParty>
     where TSelf : IIndividualPartyManager<TSelf, TParty>
     where TParty : IIndividualPartyOptions

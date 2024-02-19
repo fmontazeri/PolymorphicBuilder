@@ -3,7 +3,7 @@ using PolymorphicBuilder.Domain.Parties.Options;
 
 namespace PolymorphicBuilder.Domain.Parties.Managers;
 
-public interface IPartyManager<TSelf, TParty> : IPartyOptions
+public interface IPartyManager<out TSelf, TParty> : IPartyOptions
     where TParty : IPartyOptions
     where TSelf : IPartyManager<TSelf, TParty>
 {
