@@ -19,6 +19,11 @@ public class IndividualParty : Party, IIndividualPartyOptions
         if (string.IsNullOrWhiteSpace(nationalCode))
             throw new ArgumentNullException(nameof(NationalCode));
     }
-    
-    
+
+    internal void Update(IIndividualPartyOptions options)
+    {
+        GuardAgainstNullOrEmptyNationalCode(options.NationalCode);
+        base.Update(options);
+        this.NationalCode = options.NationalCode;
+    }
 }

@@ -70,6 +70,40 @@ public class IndividualPartyTests : PartyTests<TestIndividualPartyManager, Indiv
         SUT.Should().BeEquivalentTo(TestManager.ActualManager);
     }
 
+    [Theory]
+    [InlineData("0217791132")]
+    public void Update_Should_Be_Done_When_NationalCode_Changed(string nationalCode)
+    {
+        //Arrange
+        Constructor_Should_Create_Party_Successfully();
+        TestManager.ActualManager.WithNationalCode(nationalCode);
+
+        //Act
+        TestManager.ActualManager.Update(SUT);
+
+        //Assert
+        SUT.NationalCode.Should().Be(nationalCode);
+        SUT.Should().BeEquivalentTo(TestManager.ActualManager);
+    }
+
+
+    [Theory]
+    [InlineData("")]
+    [InlineData(" ")]
+    [InlineData(null)]
+    public void Update_Should_Throw_Exception_When_NationalCode_Is_Empty_Or_WhiteSpace(string nationalCode)
+    {
+        //Arrange
+        Constructor_Should_Create_Party_Successfully();
+
+        //Act
+        TestManager.ActualManager.WithNationalCode(nationalCode);
+        Action action = () => TestManager.ActualManager.Update(SUT);
+
+        //Assert
+        action.Should().Throw<ArgumentNullException>(nameof(IndividualParty.NationalCode));
+    }
+
     protected override TestPartyManager<TestIndividualPartyManager, IndividualPartyManager, IndividualParty>
         CreateInstance()
     {
