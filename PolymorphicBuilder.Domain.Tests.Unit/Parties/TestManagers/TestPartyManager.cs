@@ -8,7 +8,7 @@ public abstract class TestPartyManager<TSelf, TManager, TParty>
     where TParty : IPartyOptions
     where TManager : IPartyManager<TManager, TParty>
 {
-    public string Name => Name;
+    public string Name => ActualManager.Name;
     protected abstract TManager CreateManager();
     public TManager ActualManager;
 
