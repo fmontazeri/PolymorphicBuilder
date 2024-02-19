@@ -23,7 +23,7 @@ public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : 
     public void Constructor_Should_Create_Party_Successfully()
     {
         //Act
-        SUT = TestManager.Build();
+        SUT = TestManager.ActualManager.Build();
 
         //Assert
         SUT.Should().BeEquivalentTo(TestManager.ActualManager);
@@ -39,7 +39,7 @@ public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : 
         TestManager.ActualManager.WithName(name);
 
         //Act
-        Action action = () => TestManager.Build();
+        Action action = () => TestManager.ActualManager.Build();
 
         //Assert
         action.Should().Throw<ArgumentNullException>(nameof(TestManager.Name));

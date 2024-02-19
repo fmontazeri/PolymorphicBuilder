@@ -18,12 +18,12 @@ public abstract class TestPartyManager<TSelf, TManager, TParty>
         ActualManager.WithName("sample party");
     }
 
-    public TParty Build()
-    {
-        return ActualManager.Build();
-    }
+    // public TParty Build()
+    // {
+    //     return ActualManager.Build();
+    // }
 
-    public static implicit operator TSelf(TestPartyManager<TSelf, TManager, TParty> self) => (self as TSelf)!;
+    //public static implicit operator TSelf(TestPartyManager<TSelf, TManager, TParty> self) => (self as TSelf)!;
 }
 
 public class TestPartyManager : TestPartyManager<TestPartyManager, FakePartyManager, PartyTest>

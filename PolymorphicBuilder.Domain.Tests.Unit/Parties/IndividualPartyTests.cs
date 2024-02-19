@@ -14,7 +14,7 @@ public class IndividualPartyTests : PartyTests<TestIndividualPartyManager, Indiv
         Constructor_Should_Create_Party_Successfully();
 
         //Act
-        SUT = TestManager.Build();
+        SUT = TestManager.ActualManager.Build();
 
         //Assert
         SUT.Should().BeEquivalentTo(TestManager.ActualManager);
