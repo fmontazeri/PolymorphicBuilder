@@ -9,12 +9,12 @@ public abstract class TestPartyManager<TSelf, TManager, TParty>
     where TManager : IPartyManager<TManager, TParty>
 {
     public string Name => Name;
-    protected abstract TManager CreateManger();
+    protected abstract TManager CreateManager();
     public TManager ActualManager;
 
     protected TestPartyManager()
     {
-        ActualManager = CreateManger();
+        ActualManager = CreateManager();
         ActualManager.WithName("sample party");
     }
 
@@ -23,23 +23,12 @@ public abstract class TestPartyManager<TSelf, TManager, TParty>
         return ActualManager.Build();
     }
 
-    // public TSelf WithName(string name)
-    // {
-    //     ActualManager.WithName(name);
-    //     return this;
-    // }
-
-    // public void Update(TParty options)
-    // {
-    //     ActualManager.Update(options);
-    // }
-
     public static implicit operator TSelf(TestPartyManager<TSelf, TManager, TParty> self) => (self as TSelf)!;
 }
 
 public class TestPartyManager : TestPartyManager<TestPartyManager, DummyPartyManager, PartyTest>
 {
-    protected override DummyPartyManager CreateManger()
+    protected override DummyPartyManager CreateManager()
     {
         return new DummyPartyManager();
     }

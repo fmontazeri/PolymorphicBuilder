@@ -19,7 +19,7 @@ public class TestIndividualPartyManager : TestIndividualPartyManager<TestIndivid
 
     public string NationalCode => ActualManager.NationalCode;
 
-    protected override IndividualPartyManager CreateManger()
+    protected override IndividualPartyManager CreateManager()
     {
         return new IndividualPartyManager();
     }
