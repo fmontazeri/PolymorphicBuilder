@@ -26,10 +26,10 @@ public abstract class TestPartyManager<TSelf, TManager, TParty>
     public static implicit operator TSelf(TestPartyManager<TSelf, TManager, TParty> self) => (self as TSelf)!;
 }
 
-public class TestPartyManager : TestPartyManager<TestPartyManager, DummyPartyManager, PartyTest>
+public class TestPartyManager : TestPartyManager<TestPartyManager, FakePartyManager, PartyTest>
 {
-    protected override DummyPartyManager CreateManager()
+    protected override FakePartyManager CreateManager()
     {
-        return new DummyPartyManager();
+        return new FakePartyManager();
     }
 }
