@@ -14,7 +14,7 @@ public abstract class PartyTests<TTestManager, TManager, TParty> where TParty : 
     protected TParty SUT;
     
 
-    public PartyTests()
+    protected PartyTests()
     {
         TestManager = CreateInstance();
     }
